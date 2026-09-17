@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSINT</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/main.js" defer></script>
+</head>
+
+<body>
+
+    <div class="m-2 flex flex-col w-auto h-auto ">
+
+        <input
+            id="cnpj-input"
+            value="04.252.011/0001-10"
+            class="m-2 p-4 bg-gray-300 text-black rounded-md"
+            type="text"
+            placeholder="CNPJ"
+        >
+
+        <button
+            id="btn-cnpj"
+            class="m-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded"
+            type="button"
+        >
+            Consultar
+        </button>
+
+        <pre
+            id="cnpj-resultado"
+            class="m-2 p-2 bg-slate-200 rounded h-[200px] w-[300px] overflow-y-auto text-sm"
+        ></pre>
+
+    </div>
+
+</body>
+
+</html>
