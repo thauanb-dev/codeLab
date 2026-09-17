@@ -468,6 +468,30 @@ document.addEventListener('keydown', (e) => {
 console.log('🚀 Consulta CNPJ - Brasil API carregada');
 console.log('💡 Dica: Ctrl+K foca no input | Exemplos rápidos abaixo do formulário');
 
+// Tema (Light/Dark)
+function initTema() {
+    const btn = $('#btn-tema');
+    const html = document.documentElement;
+    
+    if (!btn) return;
+    
+    btn.addEventListener('click', () => {
+        const isDark = html.classList.toggle('dark');
+        localStorage.setItem('tema', isDark ? 'dark' : 'light');
+        toast(isDark ? 'Modo escuro ativado' : 'Modo claro ativado', 'info');
+    });
+    
+    // Atalho: Ctrl+Shift+T
+    document.addEventListener('keydown', (e) => {
+        if (e.ctrlKey && e.shiftKey && e.key === 'T') {
+            e.preventDefault();
+            btn.click();
+        }
+    });
+}
+
+initTema();
+
 // Animação de entrada para toast
 const style = document.createElement('style');
 style.textContent = `
