@@ -261,9 +261,12 @@ main {
 }
 
 .terminal-title {
-    color: var(--text-muted);
+    color: var(--text);
     font-size: 11px;
     letter-spacing: 1px;
+}
+.terminal-title::before {
+    content: '💻';
 }
 
 .terminal-body {
@@ -274,12 +277,24 @@ main {
 
 .prompt {
     color: var(--neon);
-}
-
-.prompt::before {
-    content: "nerosint:~$ ";
-    color: var(--neon);
     text-shadow: var(--glow-neon);
+}
+.terminal-form {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.terminal-input {
+    flex: 1;
+    padding: 0;
+    border: none;
+    background: transparent ;
+    box-shadow: none;
+}
+.terminal-input:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
 }
 
 .terminal-message {
