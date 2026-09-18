@@ -300,6 +300,7 @@ main {
 .terminal-message {
     margin-top: 8px;
     color: var(--text-secondary);
+    white-space: pre-line;
 }
 
 

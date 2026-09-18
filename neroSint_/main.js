@@ -50,11 +50,28 @@ form.addEventListener('submit', (e) => {
     e.preventDefault(); //impede o comportamento padrão do formulário (recarregar a página)
     const resp = terminalInput.value.trim().split(' ');
     const command = resp[0].trim().toLowerCase();
+    const commandList = ['cnpj', 'help', 'clear'];
     console.log(resp)
 
+    if (!commandList.includes(command)) {
+        tempMessage('Comando inválido, digite "help" para ver os comandos disponíveis...','var(--danger)');
+    }
+
+    if (command == 'help') {
+        terminalLog(`Comandos disponíveis: \n
+                cnpj -> consulta de CNPJ \n
+                clear -> limpar terminal
+
+            `);
+    }
     if (command =='cnpj'){
-        if (isValidCNPJ(resp[1])) {
-            tempMessage('Pesquisando CNPJ '+resp[1]);
+        const cnpj = resp[1];
+        if (!cnpj) {
+                tempMessage('Informe um CNPJ para consulta...','var(--danger)');
+                return;
+                }
+        if (isValidCNPJ(cnpj)) {
+            tempMessage('Pesquisando CNPJ '+cnpj);
         } else {
             tempMessage('CNPJ no formato inválido 🤨, tente novamente..','var(--warning)');
         }
