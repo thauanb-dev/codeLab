@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeroSINT</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-full">
+
+                <div class="logo">
+                    <svg
+                        class="logo-symbol w-8 h-8"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                        ></path>
+                    </svg>
+
+                    <h1>NeroSINT</h1>
+
+                    <span class="badge">v1.0</span>
+                </div>
+
+            </div>
+        </div>
+    </header>
+    <!-- MAIN -->
+    <main>
+        <div class="nerosint-layout">
+            <!-- SIDEBAR -->
+            <aside class="sidebar">
+                <div class="sidebar-header">
+                    ENTIDADES
+                </div>
+                <nav>
+                    <button class="sidebar-item active">
+                        <span>⌕</span>
+                        Busca
+                    </button>
+
+                    <button class="sidebar-item">
+                        <span>◉</span>
+                        Pessoas
+                    </button>
+
+                    <button class="sidebar-item">
+                        <span>▣</span>
+                        Empresas
+                    </button>
+
+                    <button class="sidebar-item">
+                        <span>⌖</span>
+                        Endereços
+                    </button>
+
+                    <button class="sidebar-item">
+                        <span>☎</span>
+                        Telefones
+                    </button>
+
+                    <button class="sidebar-item">
+                        <span>@</span>
+                        E-mails
+                    </button>
+
+                    <button class="sidebar-item">
+                        <span>◇</span>
+                        Domínios
+                    </button>
+
+                    <button class="sidebar-item">
+                        <span>◎</span>
+                        Redes Sociais
+                    </button>
+
+                    <button class="sidebar-item">
+                        <span>▤</span>
+                        Documentos
+                    </button>
+
+                    <button class="sidebar-item">
+                        <span>⌘</span>
+                        Cruzamentos
+                    </button>
+                </nav>
+            </aside>
+            <!-- WORKSPACE -->
+            <section class="workspace">
+                <div class="tabs">
+                    <button data-tab="identificacao" class="tab active">
+                        Identificação
+                    </button>
+                    <button data-tab="enderecos" class="tab">
+                        Endereço
+                    </button>
+                    <button data-tab="cnaes" class="tab">
+                        CNAEs
+                    </button>
+                    <button data-tab="qsa" class="tab">
+                        QSA
+                    </button>
+                </div>
+                <div class="workspace-content">
+
+                    <div class="terminal">
+
+                        <div class="terminal-header">
+                            <span class="terminal-title">
+                                NEROSINT TERMINAL
+                            </span>
+                        </div>
+
+                        <div class="terminal-body">
+
+                            <div>
+                                <span class="prompt"></span>
+                            </div>
+
+                            <div class="terminal-message">
+                                Sistema aguardando consulta...
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+        </div>
+    </main>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
