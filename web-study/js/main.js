@@ -86,11 +86,11 @@ function toast(msg, tipo = 'info') {
 function renderIdentificacao(d) {
     $('#razao-social').textContent = d.razao_social || '-';
     $('#nome-fantasia').textContent = d.nome_fantasia || 'Sem nome fantasia';
-    
+
     const badgeSituacao = $('#badge-situacao');
     badgeSituacao.textContent = getSituacaoLabel(d.descricao_situacao_cadastral);
     badgeSituacao.className = `px-3 py-1 text-sm font-medium rounded-full ${getSituacaoClass(d.descricao_situacao_cadastral)}`;
-    
+
     const badgePorte = $('#badge-porte');
     if (d.porte) {
         badgePorte.textContent = d.porte;
@@ -128,7 +128,7 @@ function renderEndereco(d) {
         ['CEP', d.cep ? d.cep.replace(/^(\d{5})(\d{3})$/, '$1-$2') : null],
         ['País', d.pais]
     ].filter(([, v]) => v).map(([l, v]) => criarLinha(l, v)).join('');
-    
+
     container.innerHTML = partes || '<p class="text-gray-500 text-sm">Endereço não informado</p>';
     $('#card-endereco').classList.remove('hidden');
 }
@@ -136,7 +136,7 @@ function renderEndereco(d) {
 function renderCnaes(d) {
     const container = $('#cnaes-content');
     let html = '';
-    
+
     if (d.cnae_fiscal_descricao) {
         html += `
             <div class="mb-6 p-4 bg-primary/5 rounded-lg border border-primary/20">
@@ -145,7 +145,7 @@ function renderCnaes(d) {
             </div>
         `;
     }
-    
+
     if (d.cnaes_secundarias?.length) {
         html += '<div class="space-y-3">';
         d.cnaes_secundarias.forEach(c => {
@@ -158,20 +158,20 @@ function renderCnaes(d) {
         });
         html += '</div>';
     }
-    
+
     container.innerHTML = html || '<p class="text-gray-500 text-sm">Nenhuma atividade informada</p>';
     $('#card-cnaes').classList.remove('hidden');
 }
 
 function renderSocios(d) {
     const container = $('#socios-content');
-    
+
     if (!d.qsa?.length) {
         container.innerHTML = '<p class="text-gray-500 text-sm">Nenhum sócio informado</p>';
         $('#card-socios').classList.remove('hidden');
         return;
     }
-    
+
     let html = '<div class="space-y-4">';
     d.qsa.forEach((s, i) => {
         const qualLabels = {
@@ -184,7 +184,7 @@ function renderSocios(d) {
             '15': 'Pessoa Física - Não Residente - Capital Estrangeiro',
             '16': 'Pessoa Jurídica - Não Residente - Capital Estrangeiro'
         };
-        
+
         html += `
             <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
                 <div class="flex items-start justify-between gap-4">
@@ -209,14 +209,14 @@ function renderSocios(d) {
         `;
     });
     html += '</div>';
-    
+
     container.innerHTML = html;
     $('#card-socios').classList.remove('hidden');
 }
 
 function renderComplementares(d) {
     const container = $('#complementares-content');
-    
+
     const campos = [
         ['CNPJ Raiz', d.cnpj_raiz],
         ['Matriz/Filial', d.identificador_matriz_filial === '1' ? 'Matriz' : d.identificador_matriz_filial === '2' ? 'Filial' : d.identificador_matriz_filial],
@@ -229,7 +229,7 @@ function renderComplementares(d) {
         ['Data Exclusão MEI', formatarData(d.data_exclusao_do_mei)],
         ['Entidade Responsável', d.ente_federativo_responsavel]
     ].filter(([, v]) => v).map(([l, v]) => criarLinha(l, v)).join('');
-    
+
     container.innerHTML = campos || '<p class="text-gray-500 text-sm">Nenhuma informação complementar</p>';
     $('#card-complementares').classList.remove('hidden');
 }
@@ -242,10 +242,10 @@ function renderJson(d) {
 function mostrarResultado(d) {
     $('#empty-state').classList.add('hidden');
     $('#resultado-section').classList.remove('hidden');
-    
+
     // Timestamp
     $('#timestamp-consulta').textContent = new Date().toLocaleString('pt-BR');
-    
+
     // Render cards
     renderIdentificacao(d);
     renderEndereco(d);
@@ -253,10 +253,10 @@ function mostrarResultado(d) {
     renderSocios(d);
     renderComplementares(d);
     renderJson(d);
-    
+
     // Scroll suave
     $('#resultado-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    
+
     // Salva no histórico
     salvarHistorico(d);
 }
@@ -332,7 +332,7 @@ function renderHistorico() {
             </div>
         </button>
     `).join('');
-    
+
     $$('#historico-lista button').forEach(btn => {
         btn.addEventListener('click', () => {
             $('#cnpj-input').value = btn.dataset.cnpj;
@@ -356,29 +356,29 @@ function fecharHistorico() {
 // Eventos
 $('#form-cnpj').addEventListener('submit', async (e) => {
     e.preventDefault();
-    
+
     const cnpj = $('#cnpj-input').value.replace(/\D/g, '');
     if (cnpj.length !== 14) {
         toast('Digite um CNPJ válido com 14 dígitos', 'aviso');
         return;
     }
-    
+
     mostrarLoading();
-    
+
     try {
         const res = await fetch(`https://brasilapi.com.br/api/cnpj/v1/${cnpj}`);
-        
+
         if (!res.ok) {
             if (res.status === 404) throw new Error('CNPJ não encontrado na base da Receita Federal');
             if (res.status === 400) throw new Error('CNPJ inválido');
             throw new Error(`Erro ${res.status}: ${res.statusText}`);
         }
-        
+
         const data = await res.json();
         mostrarResultado(data);
         mostrarSucesso();
         toast('Consulta realizada com sucesso', 'sucesso');
-        
+
     } catch (err) {
         mostrarErro(err.message);
     }
@@ -428,7 +428,7 @@ $('#btn-toggle-json').addEventListener('click', () => {
     const content = $('#json-content');
     const chevron = $('#json-chevron');
     const label = $('#btn-toggle-json').querySelector('span');
-    
+
     if (content.classList.contains('hidden')) {
         content.classList.remove('hidden');
         chevron.style.transform = 'rotate(180deg)';
@@ -458,7 +458,7 @@ $('#btn-limpar').addEventListener('click', () => {
 // Teclas de atalho
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') fecharHistorico();
-    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'ç') {
         e.preventDefault();
         $('#cnpj-input').focus();
     }
@@ -472,15 +472,15 @@ console.log('💡 Dica: Ctrl+K foca no input | Exemplos rápidos abaixo do formu
 function initTema() {
     const btn = $('#btn-tema');
     const html = document.documentElement;
-    
+
     if (!btn) return;
-    
+
     btn.addEventListener('click', () => {
         const isDark = html.classList.toggle('dark');
         localStorage.setItem('tema', isDark ? 'dark' : 'light');
         toast(isDark ? 'Modo escuro ativado' : 'Modo claro ativado', 'info');
     });
-    
+
     // Atalho: Ctrl+Shift+T
     document.addEventListener('keydown', (e) => {
         if (e.ctrlKey && e.shiftKey && e.key === 'T') {

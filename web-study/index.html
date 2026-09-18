@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consulta CNPJ - Brasil API</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/styles.css">
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -68,7 +69,12 @@
             </div>
         </div>
     </header>
-
+    <div class="tabs">
+        <button class="tab active">Identificação</button>
+        <button class="tab">Endereço</button>
+        <button class="tab">CNAEs</button>
+        <button class="tab">QSA</button>
+    </div>
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <!-- Busca -->
         <section class="mb-8" aria-labelledby="busca-title">
@@ -124,7 +130,7 @@
         <!-- Área de Resultado -->
         <section id="resultado-section" class="hidden" aria-labelledby="resultado-title">
             <h2 id="resultado-title" class="sr-only">Resultado da Consulta</h2>
-            
+
             <!-- Toolbar do resultado -->
             <div class="flex flex-wrap items-center justify-between gap-3 mb-4 no-print">
                 <div class="flex items-center gap-3">
