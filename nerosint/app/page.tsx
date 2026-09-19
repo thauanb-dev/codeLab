@@ -3,7 +3,12 @@ import { useState } from "react";
 
 export default function Home() {
   const [command, setCommand] = useState("");
-  
+
+  function handleSubmit(e: React.SubmitEvent<HTMLFormElement>){
+    e.preventDefault();
+    console.log(command);
+  }
+
   return (
     <main>
       <header className="app-header">
@@ -36,7 +41,9 @@ export default function Home() {
               <span>NEROSINT TERMINAL</span>
             </div>
             <div className="terminal-body">
-              <form className="terminal-form">
+              <form className="terminal-form"
+                  onSubmit={handleSubmit}
+              >
                 <span className="prompt">nerosint:~$</span>
                 <input
                   type="text"
@@ -44,6 +51,7 @@ export default function Home() {
                   placeholder="digite um comando"
                   value={command}
                   onChange={(e) => setCommand(e.target.value)}
+
                 />
               </form>
               <p className="terminal-message">

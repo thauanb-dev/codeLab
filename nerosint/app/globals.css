@@ -163,3 +163,6 @@ header{
 .terminal-input::placeholder {
   color: var(--text-muted);
 }
+.workspace{
+  padding: 24px;
+}
