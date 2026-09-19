@@ -141,3 +141,25 @@ header{
   color: var(--neon);
   box-shadow: var(--glow-cyan);
 }
+.terminal-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.prompt {
+  color: var(--neon);
+  font-size: 14px;
+  white-space: nowrap;
+}
+.terminal-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 14px;
+}
+.terminal-input::placeholder {
+  color: var(--text-muted);
+}

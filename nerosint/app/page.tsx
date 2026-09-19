@@ -26,9 +26,25 @@ export default function Home() {
           </nav>
         </aside>
 
-        <section>
-          <h2>Workspace</h2>
-          <p>Sistema aguardando consulta...</p>
+        <section className="workspace">
+          <div className="terminal">
+            <div className="terminal-header">
+              <span>NEROSINT TERMINAL</span>
+            </div>
+            <div className="terminal-body">
+              <form className="terminal-form">
+                <span className="prompt">nerosint:~$</span>
+                <input
+                  type="text"
+                  className="terminal-input"
+                  placeholder="digite um comando"
+                />
+              </form>
+              <p className="terminal-message">
+                Sistema aguardando consulta...
+              </p>
+            </div>
+          </div>
         </section>
       </div>
     </main>
