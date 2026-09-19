@@ -5,6 +5,10 @@ type Command = {
   input: string;
   output: string;
 }
+type CommandResult = {
+  output: string;
+  action?: "cls";
+};
 
 export default function Home() {
   const [command, setCommand] = useState("");
@@ -13,26 +17,33 @@ export default function Home() {
   function handleSubmit(e: React.SubmitEvent<HTMLFormElement>){
     e.preventDefault();
 
-    const output = processCommand(command);
-    console.log(output);
+    const result = processCommand(command);
+    
+    if (result.action === "cls") {
+      clearHistory();
+      setCommand("");
+      return;
+    }
 
     const newCommand: Command = {
       input: command,
-      output
+      output: result.output
     };
     setHistory([...history, newCommand])
   }
+
   function clearHistory() {
   setHistory([]);
 }
-function processCommand(command: string) {
+
+function processCommand(command: string) : CommandResult {
   switch (command) {
     case "help":
-      return "Comandos disponíveis";
-    case "clear":
-      return "Limpar histórico";
+      return { output: "Comandos disponíveis" };
+    case "cls":
+      return  { output: "Limpar histórico", action: "cls" };
     default:
-      return "Comando não encontrado";
+      return  { output: "Comando não encontrado" };
   }
 }
 
