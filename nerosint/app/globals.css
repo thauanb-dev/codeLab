@@ -141,6 +141,11 @@ header{
   color: var(--neon);
   box-shadow: var(--glow-cyan);
 }
+.terminal{
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
 .terminal-form {
   display: flex;
   align-items: center;
@@ -148,7 +153,12 @@ header{
 }
 .prompt {
   color: var(--neon);
-  font-size: 14px;
+  font-size: 16px;
+  white-space: nowrap;
+}
+.prompt-history {
+  color: var(--text-dark);
+  font-size: 16px;
   white-space: nowrap;
 }
 .terminal-input {
@@ -164,5 +174,5 @@ header{
   color: var(--text-muted);
 }
 .workspace{
-  padding: 24px;
+  padding: 40px
 }

@@ -1,11 +1,20 @@
 "use client"
 import { useState } from "react";
 
+type Command = {
+  input: string;
+}
+
 export default function Home() {
   const [command, setCommand] = useState("");
+  const [history, setHistory] = useState<Command[]>([]);
 
   function handleSubmit(e: React.SubmitEvent<HTMLFormElement>){
     e.preventDefault();
+    const newCommand: Command = {
+      input: command,
+    };
+    setHistory([...history, newCommand])
     console.log(command);
   }
 
@@ -41,22 +50,29 @@ export default function Home() {
               <span>NEROSINT TERMINAL</span>
             </div>
             <div className="terminal-body">
+              {
+                history.map((item,index) => (
+                    <div key={index}>
+                      <span className="prompt-history">nerosint:~$</span>{" "}
+                      <span>{item.input}</span>
+                    </div>
+                ))
+              }
               <form className="terminal-form"
-                  onSubmit={handleSubmit}
-              >
+                    onSubmit={handleSubmit}>
                 <span className="prompt">nerosint:~$</span>
                 <input
                   type="text"
                   className="terminal-input"
                   placeholder="digite um comando"
                   value={command}
-                  onChange={(e) => setCommand(e.target.value)}
-
-                />
+                  onChange={(e) => setCommand(e.target.value)}/>
               </form>
-              <p className="terminal-message">
-                Sistema aguardando consulta...
-              </p>
+              {history.length === 0 && (
+                <p className="terminal-message">
+                  Sistema aguardando consulta...
+                </p>
+              )}
             </div>
           </div>
         </section>
