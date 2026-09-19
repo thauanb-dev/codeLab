@@ -1,7 +1,11 @@
+"use client"
+import { useState } from "react";
+
 export default function Home() {
+  const [command, setCommand] = useState("");
+  
   return (
     <main>
-
       <header className="app-header">
         <div className="logo">
           <span className="logo-symbol">▣</span>
@@ -38,6 +42,8 @@ export default function Home() {
                   type="text"
                   className="terminal-input"
                   placeholder="digite um comando"
+                  value={command}
+                  onChange={(e) => setCommand(e.target.value)}
                 />
               </form>
               <p className="terminal-message">
