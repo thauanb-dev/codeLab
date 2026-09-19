@@ -3,6 +3,7 @@ import { useState } from "react";
 
 type Command = {
   input: string;
+  output: string;
 }
 
 export default function Home() {
@@ -11,14 +12,28 @@ export default function Home() {
 
   function handleSubmit(e: React.SubmitEvent<HTMLFormElement>){
     e.preventDefault();
+
+    const output = processCommand(command);
+    console.log(output);
+
     const newCommand: Command = {
       input: command,
+      output
     };
     setHistory([...history, newCommand])
-    console.log(command);
   }
   function clearHistory() {
   setHistory([]);
+}
+function processCommand(command: string) {
+  switch (command) {
+    case "help":
+      return "Comandos disponíveis";
+    case "clear":
+      return "Limpar histórico";
+    default:
+      return "Comando não encontrado";
+  }
 }
 
   return (
@@ -51,7 +66,7 @@ export default function Home() {
           <div className="terminal">
             <div className="terminal-header">
               <span>NEROSINT TERMINAL</span>
-              <button onClick={clearHistory} type="button">Limpar</button>
+              <button className="clear-button" onClick={clearHistory} type="button">Limpar</button>
             </div>
             <div className="terminal-body">
               {
@@ -59,6 +74,10 @@ export default function Home() {
                     <div key={index}>
                       <span className="prompt-history">nerosint:~$</span>{" "}
                       <span className="prompt-history">{item.input}</span>
+
+                      <div className="command-output">
+                        {item.output}
+                      </div>
                     </div>
                 ))
               }

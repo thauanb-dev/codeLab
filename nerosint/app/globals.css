@@ -91,6 +91,30 @@ header{
   font-weight: 700;
   text-shadow: var(--glow-neon);
 }
+.command-output {
+  margin-left: 20px;
+  margin-bottom: 8px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+.clear-button {
+  padding: 5px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-secondary);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+.clear-button:hover {
+  border-color: var(--cyan);
+  color: var(--neon);
+  box-shadow: var(--glow-cyan);
+}
 .version {
   color: var(--text);
   font-size: 18px;
@@ -145,6 +169,15 @@ header{
   display: flex;
   flex-direction: column;
   gap: 14px;
+}
+.terminal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--neon-dark);
+  font-size: 16px;
+  font-weight: 900;
+  text-shadow: var(--glow-neon);
 }
 .terminal-body{
   max-height: 75vh;
