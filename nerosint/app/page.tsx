@@ -17,6 +17,9 @@ export default function Home() {
     setHistory([...history, newCommand])
     console.log(command);
   }
+  function clearHistory() {
+  setHistory([]);
+}
 
   return (
     <main>
@@ -48,6 +51,7 @@ export default function Home() {
           <div className="terminal">
             <div className="terminal-header">
               <span>NEROSINT TERMINAL</span>
+              <button onClick={clearHistory} type="button">Limpar</button>
             </div>
             <div className="terminal-body">
               {
