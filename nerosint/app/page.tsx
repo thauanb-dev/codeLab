@@ -18,7 +18,7 @@ export default function Home() {
     e.preventDefault();
 
     const result = processCommand(command);
-    
+
     if (result.action === "cls") {
       clearHistory();
       setCommand("");
@@ -37,7 +37,8 @@ export default function Home() {
 }
 
 function processCommand(command: string) : CommandResult {
-  switch (command) {
+  const normalizedCommand = command.trim().toLowerCase();
+  switch (normalizedCommand) {
     case "help":
       return { output: "Comandos disponíveis" };
     case "cls":
