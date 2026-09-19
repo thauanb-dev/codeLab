@@ -58,7 +58,7 @@ export default function Home() {
                 history.map((item,index) => (
                     <div key={index}>
                       <span className="prompt-history">nerosint:~$</span>{" "}
-                      <span>{item.input}</span>
+                      <span className="prompt-history">{item.input}</span>
                     </div>
                 ))
               }
