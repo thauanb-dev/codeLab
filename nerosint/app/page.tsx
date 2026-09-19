@@ -1,16 +1,23 @@
 export default function Home() {
   return (
     <main>
-      
-      <header>
-        <h1>NeroSINT</h1>
+
+      <header className="app-header">
+        <div className="logo">
+          <span className="logo-symbol">▣</span>
+          <h1>NeroSINT</h1>
+          <span className="version">v0.1.0</span>
+        </div>
+          <span className="header-description">
+            OSINT // INVESTIGATE // CONNECT
+          </span>
       </header>
 
-      <div>
-        <aside>
+      <div className="app-layout">
+        <aside className="sidebar">
           <h2>Entidades</h2>
           <nav>
-            <button>Busca</button>
+            <button className="active">Busca</button>
             <button>Pessoas</button>
             <button>Empresas</button>
             <button>Endereços</button>
@@ -23,7 +30,6 @@ export default function Home() {
           <h2>Workspace</h2>
           <p>Sistema aguardando consulta...</p>
         </section>
-
       </div>
     </main>
   );

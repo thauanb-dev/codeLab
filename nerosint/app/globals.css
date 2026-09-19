@@ -1,25 +1,143 @@
 :root {
-  --bg: #030708;
-  --panel: #0a151a;
-  --border: #164a52;
-  --neon: #00ffb3;
-  --cyan: #00d9ff;
-  --text: #d5f7ff;
-  --text-muted: #46616a;
-}
+  --bg: #00080B;
+  --bg-secundary: #010E15;
+  --panel: #052026;
+  --panel-hover: #083F41;
+  --border: #083F41;
+  --border-active: #08AAB5;
 
+  --neon: #03F0BB;
+  --neon-dark: #03BC85;
+  --cyan: #08AAB5;
+  --cyan-dark: #047861;
+
+  --text: #B4D9F4;
+  --text-secondary: #85ACD1;
+  --text-muted: #5E809F;
+  --text-dark: #39526C;
+
+  --success: #03F0BB;
+  --warning: #FFD166;
+  --danger: #FF4D67;
+
+  --glow-neon:
+    0 0 8px rgba(3, 240, 187, 0.45),
+    0 0 20px rgba(3, 240, 187, 0.20);
+
+  --glow-cyan:
+    0 0 8px rgba(8, 170, 181, 0.45),
+    0 0 20px rgba(8, 170, 181, 0.20);
+
+  --font-mono:
+    "JetBrains Mono",
+    "Fira Code",
+    Consolas,
+    monospace;
+
+  --radius: 4px;
+}
 * {
   box-sizing: border-box;
 }
-
 html,
 body {
   margin: 8px;
   min-height: 100%;
 }
-
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: monospace;
+  font-family: var(--font-mono);
+}
+header{
+  height: 70px;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  border-bottom: 1px solid var(--border);
+}
+.app-layout {
+  display: flex;
+  min-height: calc(100vh - 70px);
+}
+.app-layout aside {
+  width: 220px;
+}
+.app-layout section {
+  flex: 1;
+}
+.app-header {
+  height: 70px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-secondary);
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.logo-symbol {
+  color: var(--neon);
+  font-size: 24px;
+  text-shadow: var(--glow-neon);
+}
+.logo h1 {
+  color: var(--neon);
+  font-size: 24px;
+  font-weight: 700;
+  text-shadow: var(--glow-neon);
+}
+.version {
+  color: var(--text);
+  font-size: 18px;
+}
+.header-description {
+  color: var(--text-secondary);
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+.sidebar {
+  width: 220px;
+  padding: 24px 16px;
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border);
+}
+.sidebar h2 {
+  margin-bottom: 20px;
+  color: var(--neon);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.sidebar button {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+}
+.sidebar button:hover {
+  background: var(--panel);
+  border-color: var(--border);
+  color: var(--neon);
+}
+.sidebar button.active {
+  background: var(--panel);
+  border-color: var(--cyan);
+  color: var(--neon);
+  box-shadow: var(--glow-cyan);
 }
