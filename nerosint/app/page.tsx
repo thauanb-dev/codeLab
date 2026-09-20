@@ -121,52 +121,52 @@ export default function Home() {
 
         [ IDENTIFICAÇÃO ]
 
-        CNPJ                     : ${formatCnpj(data.cnpj)}
-        Razão Social             : ${data.razao_social}
-        Nome Fantasia            : ${data.nome_fantasia}
-        Matriz/Filial             : ${data.descricao_identificador_matriz_filial}
-        Situação Cadastral       : ${data.descricao_situacao_cadastral}
-        Motivo Situação          : ${data.descricao_motivo_situacao_cadastral}
-        Situação Especial         : ${data.situacao_especial || "Não informado"}
-        Data Situação             : ${data.data_situacao_cadastral || "Não informado"}
-        Data Situação Especial    : ${data.data_situacao_especial || "Não informado"}
+          CNPJ                     : ${formatCnpj(data.cnpj)}
+          Razão Social             : ${data.razao_social}
+          Nome Fantasia            : ${data.nome_fantasia}
+          Matriz/Filial             : ${data.descricao_identificador_matriz_filial}
+          Situação Cadastral       : ${data.descricao_situacao_cadastral}
+          Motivo Situação          : ${data.descricao_motivo_situacao_cadastral}
+          Situação Especial         : ${data.situacao_especial || "Não informado"}
+          Data Situação             : ${data.data_situacao_cadastral || "Não informado"}
+          Data Situação Especial    : ${data.data_situacao_especial || "Não informado"}
 
         [ NATUREZA JURÍDICA ]
 
-        Natureza                  : ${data.natureza_juridica}
-        Código                    : ${data.codigo_natureza_juridica}
-        Qualificação Responsável  : ${data.qualificacao_do_responsavel}
+          Natureza                  : ${data.natureza_juridica}
+          Código                    : ${data.codigo_natureza_juridica}
+          Qualificação Responsável  : ${data.qualificacao_do_responsavel}
 
         [ PORTE E CAPITAL ]
 
-        Porte                     : ${data.porte}
-        Código do Porte           : ${data.codigo_porte}
-        Capital Social            : R$ ${Number(data.capital_social).toLocaleString("pt-BR", {
+          Porte                     : ${data.porte}
+          Código do Porte           : ${data.codigo_porte}
+          Capital Social            : R$ ${Number(data.capital_social).toLocaleString("pt-BR", {
               minimumFractionDigits: 2
             })}
 
         [ ATIVIDADE PRINCIPAL ]
 
-        CNAE                      : ${data.cnae_fiscal}
-        Descrição                 : ${data.cnae_fiscal_descricao}
+          CNAE                      : ${data.cnae_fiscal}
+          Descrição                 : ${data.cnae_fiscal_descricao}
 
         [ ENDEREÇO ]
 
-        Tipo Logradouro           : ${data.descricao_tipo_de_logradouro}
-        Logradouro                : ${data.logradouro}
-        Número                    : ${data.numero}
-        Complemento               : ${data.complemento || "Não informado"}
-        Bairro                    : ${data.bairro}
-        Município                 : ${data.municipio}
-        UF                        : ${data.uf}
-        CEP                       : ${data.cep}
+          Tipo Logradouro           : ${data.descricao_tipo_de_logradouro}
+          Logradouro                : ${data.logradouro}
+          Número                    : ${data.numero}
+          Complemento               : ${data.complemento || "Não informado"}
+          Bairro                    : ${data.bairro}
+          Município                 : ${data.municipio}
+          UF                        : ${data.uf}
+          CEP                       : ${data.cep}
 
-        Código Município          : ${data.codigo_municipio}
-        Código IBGE               : ${data.codigo_municipio_ibge}
+          Código Município          : ${data.codigo_municipio}
+          Código IBGE               : ${data.codigo_municipio_ibge}
 
         [ ATIVIDADE E DATAS ]
 
-        Data Início Atividade     : ${data.data_inicio_atividade}
+          Data Início Atividade     : ${data.data_inicio_atividade}
 
         [ REGIME TRIBUTÁRIO ]
 
@@ -184,25 +184,25 @@ export default function Home() {
 
         [ SIMPLES / MEI ]
 
-        Optante pelo Simples     : ${data.opcao_pelo_simples ? "SIM" : "NÃO"}
-        Data Opção Simples       : ${data.data_opcao_pelo_simples || "Não informado"}
-        Data Exclusão Simples    : ${data.data_exclusao_do_simples || "Não informado"}
+          Optante pelo Simples     : ${data.opcao_pelo_simples ? "SIM" : "NÃO"}
+          Data Opção Simples       : ${data.data_opcao_pelo_simples || "Não informado"}
+          Data Exclusão Simples    : ${data.data_exclusao_do_simples || "Não informado"}
 
-        Optante pelo MEI         : ${data.opcao_pelo_mei ? "SIM" : "NÃO"}
-        Data Opção MEI           : ${data.data_opcao_pelo_mei || "Não informado"}
-        Data Exclusão MEI        : ${data.data_exclusao_do_mei || "Não informado"}
+          Optante pelo MEI         : ${data.opcao_pelo_mei ? "SIM" : "NÃO"}
+          Data Opção MEI           : ${data.data_opcao_pelo_mei || "Não informado"}
+          Data Exclusão MEI        : ${data.data_exclusao_do_mei || "Não informado"}
 
         [ CONTATO ]
 
-        Telefone 1               : ${data.ddd_telefone_1 || "Não informado"}
-        Telefone 2               : ${data.ddd_telefone_2 || "Não informado"}
-        Fax                       : ${data.ddd_fax || "Não informado"}
-        E-mail                    : ${data.email || "Não informado"}
+          Telefone 1               : ${data.ddd_telefone_1 || "Não informado"}
+          Telefone 2               : ${data.ddd_telefone_2 || "Não informado"}
+          Fax                       : ${data.ddd_fax || "Não informado"}
+          E-mail                    : ${data.email || "Não informado"}
 
         [ RESPONSABILIDADE ]
 
-        Ente Federativo           : ${data.ente_federativo_responsavel || "Não informado"}
-        Qualificação Responsável  : ${data.qualificacao_do_responsavel}
+          Ente Federativo           : ${data.ente_federativo_responsavel || "Não informado"}
+          Qualificação Responsável  : ${data.qualificacao_do_responsavel}
 
         [ SOCIEDADE — QSA ]
 
@@ -219,28 +219,28 @@ export default function Home() {
             }, index: number) =>
               `Sócio ${index + 1}
 
-        Nome                      : ${socio.nome_socio}
-        CPF/CNPJ                  : ${socio.cnpj_cpf_do_socio}
-        Qualificação              : ${socio.qualificacao_socio}
-        Data Entrada              : ${socio.data_entrada_sociedade}
-        Faixa Etária              : ${socio.faixa_etaria}
-        Representante Legal       : ${socio.nome_representante_legal || "Não informado"}
-        Qualificação Representante: ${socio.qualificacao_representante_legal}`
+          Nome                      : ${socio.nome_socio}
+          CPF/CNPJ                  : ${socio.cnpj_cpf_do_socio}
+          Qualificação              : ${socio.qualificacao_socio}
+          Data Entrada              : ${socio.data_entrada_sociedade}
+          Faixa Etária              : ${socio.faixa_etaria}
+          Representante Legal       : ${socio.nome_representante_legal || "Não informado"}
+          Qualificação Representante: ${socio.qualificacao_representante_legal}`
           )
           .join("\n\n")}
 
         [ OUTRAS INFORMAÇÕES ]
 
-        País                      : ${data.pais || "Brasil"}
-        Código País               : ${data.codigo_pais || "Não informado"}
-        Nome Cidade Exterior      : ${data.nome_cidade_no_exterior || "Não informado"}
-        Código Município          : ${data.codigo_municipio}
-        Matriz/Filial              : ${data.identificador_matriz_filial}
+          País                      : ${data.pais || "Brasil"}
+          Código País               : ${data.codigo_pais || "Não informado"}
+          Nome Cidade Exterior      : ${data.nome_cidade_no_exterior || "Não informado"}
+          Código Município          : ${data.codigo_municipio}
+          Matriz/Filial              : ${data.identificador_matriz_filial}
 
         ══════════════════════════════════════════════════════════════════
         `
           };
-        
+
 
     }
 
