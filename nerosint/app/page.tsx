@@ -165,9 +165,67 @@ export default function Home() {
     "$1.$2.$3/$4-$5"
   );
 }
+function isValidCNPJ(cnpj: string): boolean {
+  if (cnpj.length !== 14) {
+    return false;
+  }
+
+  if (/^(\d)\1{13}$/.test(cnpj)) {
+    return false;
+  }
+
+  let sum = 0;
+  let weight = 5;
+
+  for (let i = 0; i < 12; i++) {
+    sum += Number(cnpj[i]) * weight;
+    weight--;
+
+    if (weight === 1) {
+      weight = 9;
+    }
+  }
+
+  let remainder = sum % 11;
+  const firstDigit = remainder < 2 ? 0 : 11 - remainder;
+
+  if (Number(cnpj[12]) !== firstDigit) {
+    return false;
+  }
+
+  sum = 0;
+  weight = 6;
+
+  for (let i = 0; i < 13; i++) {
+    sum += Number(cnpj[i]) * weight;
+    weight--;
+
+    if (weight === 1) {
+      weight = 9;
+    }
+  }
+
+  remainder = sum % 11;
+  const secondDigit = remainder < 2 ? 0 : 11 - remainder;
+
+  return Number(cnpj[13]) === secondDigit;
+}
+
   async function cnpjCheck(args: string[]) : Promise<CommandResult>{
+    if (!args[0]) {
+    return {
+      output: "Uso: cnpj <número do CNPJ>"
+    };
+  }
+    if (!isValidCNPJ(clearCNPJ(args[0]))) {
+      return {
+        output: "CNPJ inválido. Certifique-se de fornecer um CNPJ válido."
+      };
+    }
+    
     const cnpj = clearCNPJ(args[0]);
     const url = `https://brasilapi.com.br/api/cnpj/v1/${cnpj}`;
+
 
     const response = await fetch(url)
     const data  = await response.json()
