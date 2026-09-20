@@ -1,3 +1,4 @@
+@import "tailwindcss";
 :root {
   --bg: #00080B;
   --bg-secundary: #010E15;
@@ -15,6 +16,8 @@
   --text-secondary: #85ACD1;
   --text-muted: #5E809F;
   --text-dark: #39526C;
+  --text-neon: #228f6e;
+  --text-matrix: #0eae0e;
 
   --success: #03F0BB;
   --warning: #FFD166;
@@ -94,7 +97,7 @@ header{
 .command-output {
   margin-left: 20px;
   margin-bottom: 8px;
-  color: var(--text-secondary);
+  color: var(--text-matrix);
   font-size: 14px;
   line-height: 1.5;
   white-space: pre-wrap;

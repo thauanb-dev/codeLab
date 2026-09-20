@@ -1,5 +1,6 @@
 "use client"
 import { useState } from "react";
+import {Eraser} from 'lucide-react';
 
 type Command = {
   input: string;
@@ -78,7 +79,13 @@ function processCommand(command: string) : CommandResult {
           <div className="terminal">
             <div className="terminal-header">
               <span>NEROSINT TERMINAL</span>
-              <button className="clear-button" onClick={clearHistory} type="button">Limpar</button>
+                {history.length > 0 &&
+                    (
+                      <button className="clear-button" onClick={clearHistory} type="button">
+                        <Eraser className="h-4 w-4"/>
+                      </button>
+                    )
+                }
             </div>
             <div className="terminal-body">
               {
@@ -88,7 +95,7 @@ function processCommand(command: string) : CommandResult {
                       <span className="prompt-history">{item.input}</span>
 
                       <div className="command-output">
-                        {item.output}
+                        {`> ${item.output}`}
                       </div>
                     </div>
                 ))
