@@ -153,53 +153,60 @@ export default function Home() {
     };
     setHistory([...history, newCommand])
   }
-
   function clearHistory() {
   setHistory([]);
+  }
+  function clearCNPJ(cnpj: string){
+    return cnpj.replace(/\D/g, '');
+  }
+  function formatCnpj(cnpj: string): string {
+  return cnpj.replace(
+    /^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/,
+    "$1.$2.$3/$4-$5"
+  );
 }
+  async function cnpjCheck(args: string[]) : Promise<CommandResult>{
+    const cnpj = clearCNPJ(args[0]);
+    const url = `https://brasilapi.com.br/api/cnpj/v1/${cnpj}`;
 
-async function cnpjCheck(args: string[]) : Promise<CommandResult>{
-  const cnpj = args[0]
-  const url = `https://brasilapi.com.br/api/cnpj/v1/${cnpj}`;
+    const response = await fetch(url)
+    const data  = await response.json()
+    // const data = defaultResponse
+    console.log(data)
 
-  const response = await fetch(url)
-  const data  = await response.json()
-  // const data = defaultResponse
-  console.log(data)
+    return {
+      output: `
+    ╔══════════════════════════════════════════════════════════════╗
+    ║                    RESULTADO — CNPJ                         ║
+    ╚══════════════════════════════════════════════════════════════╝
 
-  return {
-    output: `
-  ╔══════════════════════════════════════════════════════════════╗
-  ║                    RESULTADO — CNPJ                         ║
-  ╚══════════════════════════════════════════════════════════════╝
+    [ IDENTIFICAÇÃO ]
+    CNPJ           : ${formatCnpj(data.cnpj)}
+    Razão Social   : ${data.razao_social}
+    Nome Fantasia  : ${data.nome_fantasia}
+    Situação       : ${data.descricao_situacao_cadastral}
+    Natureza       : ${data.natureza_juridica}
+    Porte          : ${data.porte}
 
-  [ IDENTIFICAÇÃO ]
-  CNPJ           : ${data.cnpj}
-  Razão Social   : ${data.razao_social}
-  Nome Fantasia  : ${data.nome_fantasia}
-  Situação       : ${data.descricao_situacao_cadastral}
-  Natureza       : ${data.natureza_juridica}
-  Porte          : ${data.porte}
+    [ ENDEREÇO ]
+    Logradouro     : ${data.descricao_tipo_de_logradouro} ${data.logradouro}, ${data.numero}
+    Complemento    : ${data.complemento}
+    Bairro         : ${data.bairro}
+    Município      : ${data.municipio}/${data.uf}
+    CEP            : ${data.cep}
 
-  [ ENDEREÇO ]
-  Logradouro     : ${data.descricao_tipo_de_logradouro} ${data.logradouro}, ${data.numero}
-  Complemento    : ${data.complemento}
-  Bairro         : ${data.bairro}
-  Município      : ${data.municipio}/${data.uf}
-  CEP            : ${data.cep}
+    [ ATIVIDADE ]
+    CNAE           : ${data.cnae_fiscal_descricao}
 
-  [ ATIVIDADE ]
-  CNAE           : ${data.cnae_fiscal_descricao}
+    [ CONTATO ]
+    Telefone       : ${data.ddd_telefone_1}
+    E-mail         : ${data.email ?? "Não informado"}
 
-  [ CONTATO ]
-  Telefone       : ${data.ddd_telefone_1}
-  E-mail         : ${data.email ?? "Não informado"}
+    ──────────────────────────────────────────────────────────────
+    `
+    };
 
-  ──────────────────────────────────────────────────────────────
-  `
-  };
-
-}
+  }
 
 async function processCommand(command: string) : Promise<CommandResult> {
   const normalizedCommand = command.trim().toLowerCase();
